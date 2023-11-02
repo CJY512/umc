@@ -3,7 +3,6 @@ package umc.spring.domain.terms;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import umc.spring.domain.BaseTimeEntity;
-import umc.spring.domain.member.Member;
 import umc.spring.mapping.member_agree.MemberAgree;
 
 import javax.persistence.*;
@@ -23,8 +22,10 @@ public class Terms extends BaseTimeEntity {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 20)
     private String title;
 
+    @Lob
     private String text;
 
     private Boolean optional;

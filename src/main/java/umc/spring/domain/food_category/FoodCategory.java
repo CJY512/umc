@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import umc.spring.domain.BaseTimeEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,6 +22,7 @@ public class FoodCategory extends BaseTimeEntity {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true, length = 15)
     private String name;
 
     @Builder

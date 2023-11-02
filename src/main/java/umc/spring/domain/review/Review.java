@@ -21,6 +21,7 @@ public class Review extends BaseTimeEntity {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+    @Lob
     private String body;
 
     private Float score;

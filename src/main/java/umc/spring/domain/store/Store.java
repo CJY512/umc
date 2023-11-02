@@ -20,8 +20,10 @@ public class Store extends BaseTimeEntity {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 50)
     private String name;
 
+    @Column(length = 50)
     private String address;
 
     private Float score;

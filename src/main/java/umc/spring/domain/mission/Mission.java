@@ -30,6 +30,7 @@ public class Mission extends BaseTimeEntity {
 
     private LocalDate deadline;
 
+    @Lob
     private String missionSpec;
 
     @ManyToOne(fetch = LAZY)

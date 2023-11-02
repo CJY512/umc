@@ -22,6 +22,7 @@ public class MemberMission extends BaseTimeEntity {
     private Long id;
 
     @Enumerated(STRING)
+    @Column(columnDefinition = "varchar(15) default 'CHALLENGING'", nullable = false)
     private MemberMissionStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)

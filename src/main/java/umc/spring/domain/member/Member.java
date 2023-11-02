@@ -26,23 +26,29 @@ public class Member extends BaseTimeEntity {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 20)
     private String name;
 
+    @Column(nullable = false, length = 40)
     private String address;
 
+    @Column(nullable = false, length = 40)
     private String specAddress;
 
     @Enumerated(STRING)
+    @Column(columnDefinition = "varchar(10)")
     private Gender gender;
 
     @Enumerated(STRING)
     private SocialType socialType;
 
     @Enumerated(STRING)
+    @Column(columnDefinition = "varchar(15) default 'ACTIVE'", nullable = false)
     private MemberStatus status;
 
     private LocalDate inactiveDate;
 
+    @Column(nullable = false, length = 50)
     private String email;
 
     private Integer point;
