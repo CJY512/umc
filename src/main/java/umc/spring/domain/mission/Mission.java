@@ -4,13 +4,16 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import umc.spring.domain.BaseTimeEntity;
+import umc.spring.domain.store.Store;
+import umc.spring.mapping.member_mission.MemberMission;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -28,6 +31,13 @@ public class Mission extends BaseTimeEntity {
     private LocalDate deadline;
 
     private String missionSpec;
+
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "store_id")
+    private Store store;
+
+    @OneToMany(mappedBy = "mission")
+    private List<MemberMission> memberMissionList = new ArrayList<>();
 
     @Builder
     private Mission(String missionSpec, Integer reward, LocalDate deadline) {

@@ -3,11 +3,11 @@ package umc.spring.domain.store;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import umc.spring.domain.BaseTimeEntity;
+import umc.spring.domain.region.Region;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -25,5 +25,9 @@ public class Store extends BaseTimeEntity {
     private String address;
 
     private Float score;
+
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "region_id")
+    private Region region;
 
 }

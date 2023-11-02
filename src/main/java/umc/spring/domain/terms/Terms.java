@@ -3,10 +3,13 @@ package umc.spring.domain.terms;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import umc.spring.domain.BaseTimeEntity;
+import umc.spring.domain.member.Member;
+import umc.spring.mapping.member_agree.MemberAgree;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
@@ -25,4 +28,7 @@ public class Terms extends BaseTimeEntity {
     private String text;
 
     private Boolean optional;
+
+    @OneToMany(mappedBy = "terms", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MemberAgree> memberAgreeList = new ArrayList<>();
 }
