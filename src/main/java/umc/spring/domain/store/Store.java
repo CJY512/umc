@@ -3,9 +3,13 @@ package umc.spring.domain.store;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import umc.spring.domain.BaseTimeEntity;
+import umc.spring.domain.mission.Mission;
 import umc.spring.domain.region.Region;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
@@ -27,6 +31,9 @@ public class Store extends BaseTimeEntity {
     private String address;
 
     private Float score;
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Mission> missionList = new ArrayList<>();
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "region_id")
