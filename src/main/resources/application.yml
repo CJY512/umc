@@ -15,5 +15,12 @@ spring:
         format_sql: true
         use_sql_comments: true
         hbm2ddl:
-          auto: update
+          auto: create
+          import_files: classpath:db/data.sql
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+        connection:
+          charset: utf-8
+          characterEncoding: utf-8
+          useUnicode: true
         default_batch_fetch_size: 1000
+    defer-datasource-initialization: true

@@ -1,7 +1,12 @@
 package umc.spring.domain.member;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.BaseTimeEntity;
 import umc.spring.domain.review.Review;
 import umc.spring.mapping.member_agree.MemberAgree;
@@ -20,6 +25,10 @@ import static lombok.AccessLevel.PROTECTED;
 @Entity
 @Getter
 @NoArgsConstructor(access = PROTECTED)
+@Builder
+@AllArgsConstructor
+@DynamicInsert
+@DynamicUpdate
 public class Member extends BaseTimeEntity {
 
     @Id
@@ -48,9 +57,10 @@ public class Member extends BaseTimeEntity {
 
     private LocalDate inactiveDate;
 
-    @Column(nullable = false, length = 50)
+//    @Column(nullable = false, length = 50)
     private String email;
 
+    @ColumnDefault("0")
     private Integer point;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)

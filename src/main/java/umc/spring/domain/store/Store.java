@@ -1,7 +1,10 @@
 package umc.spring.domain.store;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import umc.spring.domain.BaseTimeEntity;
 import umc.spring.domain.mission.Mission;
 import umc.spring.domain.region.Region;
@@ -18,6 +21,8 @@ import static lombok.AccessLevel.PROTECTED;
 @Entity
 @Getter
 @NoArgsConstructor(access = PROTECTED)
+@Builder
+@AllArgsConstructor
 public class Store extends BaseTimeEntity {
 
     @Id
@@ -30,6 +35,7 @@ public class Store extends BaseTimeEntity {
     @Column(length = 50)
     private String address;
 
+    @ColumnDefault("0.0")
     private Float score;
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -39,4 +45,9 @@ public class Store extends BaseTimeEntity {
     @JoinColumn(name = "region_id")
     private Region region;
 
+    public void setRegion(Region region) {
+        if (region != null) {
+            this.region = region;
+        }
+    }
 }
